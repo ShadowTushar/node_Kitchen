@@ -46,4 +46,22 @@ router.get('/:tasteType', async (req, res) => {
     }
 })
 
+router.delete('/:tasteType', async (req, res) => {
+    try {
+        const tasteType = req.params.id
+        const response = await menuItem.findByIdAndDelete(tasteType)
+
+        if (!response) {
+            res.status(404).json({ error: 'Menu Item Not Found' })
+        }
+
+        console.log('Data Deleted')
+        res.status(200).json('Menu Item Deleted Successfully')
+    }
+    catch {
+        console.log('Error Deleting Data')
+        res.status(500).json({ Error: 'Internal Server Error' })
+    }
+})
+
 module.exports = router
