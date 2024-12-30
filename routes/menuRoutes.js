@@ -46,10 +46,10 @@ router.get('/:tasteType', async (req, res) => {
     }
 })
 
-router.delete('/:tasteType', async (req, res) => {
+router.delete('/:id', async (req, res) => {
     try {
-        const tasteType = req.params.id
-        const response = await menuItem.findByIdAndDelete(tasteType)
+        const menuID = req.params.id
+        const response = await menuItem.findByIdAndDelete(id)
 
         if (!response) {
             res.status(404).json({ error: 'Menu Item Not Found' })
